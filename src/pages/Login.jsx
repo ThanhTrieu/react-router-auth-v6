@@ -12,7 +12,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 export const LoginPage = () => {
-  const { login } = useAuth();
+  const { login, error, loading } = useAuth();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -39,6 +39,7 @@ export const LoginPage = () => {
         <Typography component="h1" variant="h5">
           Log In
         </Typography>
+        {error !== null && ( <Typography component="h1" variant="h5">{error.mess}</Typography>)}
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
@@ -65,6 +66,7 @@ export const LoginPage = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            disabled={loading}
           >
             Login In
           </Button>
